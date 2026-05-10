@@ -2,6 +2,8 @@ import express from "express";
 import cors from "cors";
 import morgan from "morgan";
 import projectRoutes from "./routes/projectRoutes.js";
+import serviceRoutes from "./routes/serviceRoutes.js";
+import reviewRoutes from "./routes/reviewRoutes.js";
 
 const app = express();
 
@@ -16,6 +18,10 @@ app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/projects", projectRoutes);
+app.use("/api/services", serviceRoutes);
+app.use("/api/reviews", reviewRoutes);
+
+
 
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
