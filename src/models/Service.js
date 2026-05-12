@@ -1,5 +1,44 @@
 import mongoose from "mongoose";
 
+const ServicePackageSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+
+    price: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+
+    billingType: {
+      type: String,
+      enum: ["one-time", "monthly", "custom"],
+      default: "one-time",
+    },
+
+    description: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+
+    features: {
+      type: [String],
+      default: [],
+    },
+
+    popular: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  { _id: false }
+);
+
 const ServiceSectionSchema = new mongoose.Schema(
   {
     heading: {
@@ -93,6 +132,11 @@ const ServiceSchema = new mongoose.Schema(
       default: [],
     },
 
+    packages: {
+      type: [ServicePackageSchema],
+      default: [],
+    },
+
     sections: {
       type: [ServiceSectionSchema],
       default: [],
@@ -115,7 +159,7 @@ const ServiceSchema = new mongoose.Schema(
 
     status: {
       type: String,
-      enum: ["draft", "published"],
+      enum: ["draft", "published", "hold"],
       default: "published",
     },
   },

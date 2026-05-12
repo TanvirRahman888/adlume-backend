@@ -69,6 +69,7 @@ export async function createService(req, res) {
       features,
       benefits,
       process,
+      packages,
       sections,
       faqs,
       order,
@@ -76,7 +77,14 @@ export async function createService(req, res) {
       status,
     } = req.body;
 
-    if (!title || !shortDescription || !heroTitle || !heroDescription || !icon || !image) {
+    if (
+      !title ||
+      !shortDescription ||
+      !heroTitle ||
+      !heroDescription ||
+      !icon ||
+      !image
+    ) {
       return res.status(400).json({
         success: false,
         message:
@@ -106,6 +114,7 @@ export async function createService(req, res) {
       features,
       benefits,
       process,
+      packages,
       sections,
       faqs,
       order,
@@ -161,7 +170,7 @@ export async function updateService(req, res) {
       {
         new: true,
         runValidators: true,
-      }
+      },
     );
 
     res.status(200).json({
