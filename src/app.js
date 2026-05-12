@@ -7,6 +7,8 @@ import serviceRoutes from "./routes/serviceRoutes.js";
 import reviewRoutes from "./routes/reviewRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import roleRequestRoutes from "./routes/roleRequestRoutes.js";
+import orderRoutes from "./routes/orderRoutes.js";
+import revisionRoutes from "./routes/revisionRoutes.js";
 
 const app = express();
 
@@ -60,6 +62,8 @@ app.use("/api/services", serviceRoutes);
 app.use("/api/reviews", reviewRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/role-requests", roleRequestRoutes);
+app.use("/api/orders", orderRoutes);
+app.use("/api/revisions", revisionRoutes);
 
 app.use((req, res) => {
   res.status(404).json({
