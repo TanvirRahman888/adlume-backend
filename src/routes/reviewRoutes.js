@@ -6,15 +6,19 @@ import {
   getReviews,
   updateReview,
 } from "../controllers/reviewController.js";
-import { adminOnly, protect } from "../middleware/authMiddleware.js";
+import {
+  adminOnly,
+  loadDbUser,
+  protect,
+} from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
 router.get("/", getReviews);
 router.get("/:id", getReviewById);
 
-router.post("/", protect, adminOnly, createReview);
-router.patch("/:id", protect, adminOnly, updateReview);
-router.delete("/:id", protect, adminOnly, deleteReview);
+router.post("/", protect, loadDbUser, adminOnly, createReview);
+router.patch("/:id", protect, loadDbUser, adminOnly, updateReview);
+router.delete("/:id", protect, loadDbUser, adminOnly, deleteReview);
 
 export default router;

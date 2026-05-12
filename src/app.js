@@ -5,6 +5,7 @@ import morgan from "morgan";
 import projectRoutes from "./routes/projectRoutes.js";
 import serviceRoutes from "./routes/serviceRoutes.js";
 import reviewRoutes from "./routes/reviewRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
 
 const app = express();
 
@@ -56,6 +57,7 @@ app.get("/api/health", (req, res) => {
 app.use("/api/projects", projectRoutes);
 app.use("/api/services", serviceRoutes);
 app.use("/api/reviews", reviewRoutes);
+app.use("/api/users", userRoutes);
 
 app.use((req, res) => {
   res.status(404).json({
